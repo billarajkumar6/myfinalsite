@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
@@ -28,7 +27,7 @@
                             900: '#111827',
                         },
                         // Redefining 'accent' color as pure white for consistency
-                        accent: '#FFFFFF', 
+                        accent: '#FFFFFF',
                     }
                 }
             }
@@ -73,7 +72,6 @@
             border-radius: 50%;
             animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
         }
-        
         @keyframes pulse-ring {
             0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
@@ -108,7 +106,7 @@
             0% { transform: rotate(180deg) translate(80px) rotate(-180deg); }
             100% { transform: rotate(540deg) translate(80px) rotate(-540deg); }
         }
-        
+
         /* Vertical Bar Styles (for Skills) */
         .v-bar-container {
             height: 150px;
@@ -131,7 +129,7 @@
             width: 100%;
             background-color: #FFFFFF; /* Changed from Gold */
             border-radius: 4px;
-            animation: loadVBar 1.5s ease-out forwards;
+            /* Animation will be triggered by JS scroll listener */
             position: relative;
             display: flex;
             align-items: flex-start;
@@ -139,6 +137,9 @@
         }
         @keyframes loadVBar {
             from { height: 0; }
+        }
+        .v-bar-fill.start-v-bar-animation {
+            animation: loadVBar 1.5s ease-out forwards;
         }
         .v-bar-percentage {
             position: absolute;
@@ -149,7 +150,7 @@
             font-weight: 500;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
-        
+
         /* --- Experience Bar Animation Styles (Horizontal Graph) --- */
         @keyframes fillExperienceBar {
             from { width: 0; }
@@ -169,10 +170,13 @@
         .experience-bar-fill {
             height: 100%;
             /* Changed gradient to white */
-            background: linear-gradient(90deg, #1a1a1a 0%, #FFFFFF 100%); 
+            background: linear-gradient(90deg, #1a1a1a 0%, #FFFFFF 100%);
             border-radius: 4px;
-            animation: fillExperienceBar 2s ease-out forwards;
-            width: 100%; 
+            width: 0; /* Start at 0 width, animation will set to 100% */
+        }
+
+        .experience-bar-fill.start-fill-animation {
+             animation: fillExperienceBar 2s ease-out forwards;
         }
 
         .milestone-marker {
@@ -186,7 +190,7 @@
             border-radius: 50%;
             cursor: pointer;
             /* Changed shadow to white/light */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             transition: all 0.3s;
             opacity: 0;
         }
@@ -194,7 +198,7 @@
              opacity: 1;
              animation: bounceIn 0.5s ease-out;
         }
-        
+
         @keyframes bounceIn {
             0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
             50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
@@ -217,13 +221,13 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .card-title-container {
             position: relative;
             padding-bottom: 8px;
             margin-bottom: 8px;
         }
-        
+
         .card-title-bar {
             position: absolute;
             bottom: 0;
@@ -237,15 +241,13 @@
             width: 100%;
         }
 
-
         /* --- Footer Button Animation Styles --- */
         .contact-btn:hover {
             /* Changed shadow to white */
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
             transform: scale(1.05);
             transition: all 0.3s ease-in-out;
         }
-
     </style>
 </head>
 <body class="bg-black text-white">
@@ -256,7 +258,7 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Navigation Branding (White Accent) -->
                 <a href="#" class="text-2xl tracking-widest uppercase semi-bold-text border-white/70 border-2 px-3 py-1 hover:bg-white hover:text-black transition duration-300 text-white">BR</a>
-                
+
                 <div class="hidden md:flex space-x-12 text-sm tracking-widest uppercase">
                     <!-- Navigation Links (White Accent on hover) -->
                     <a href="#summary" class="hover:text-white transition-colors">Summary</a>
@@ -288,7 +290,7 @@
             <p class="text-sm md:text-base text-white/70 max-w-2xl mx-auto leading-relaxed regular-text">
                 Relocating to Preston, UK • BBA.LLB Student • Creative Media Expert
             </p>
-            
+
             <!-- Contact Button (White Accent) -->
             <a href="#contact" class="mt-10 inline-block border border-white/70 px-8 py-3 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition duration-500 text-white">
                 Contact Me
@@ -307,7 +309,7 @@
                         Aspiring solicitor and BBA.LLB student with a First Class academic record (completed 3rd year) and recent legal internship experience in India. I am seeking a temporary Paralegal or Legal Assistant role in Preston, UK.
                     </p>
                     <p class="text-white/70 mb-6 leading-loose font-light text-justify">
-                        I bring 12 years of professional background in the media industry as a writer, director, and editor, with proven expertise in research, drafting, project management, and client communication. 
+                        I bring 12 years of professional background in the media industry as a writer, director, and editor, with proven expertise in research, drafting, project management, and client communication.
                     </p>
                     <!-- Highlight text (Bright White Border and Text) -->
                     <p class="text-white text-lg border-l-4 border-white pl-4 italic thin-text">
@@ -321,22 +323,22 @@
                         <div class="absolute inset-2 border border-white/20 rounded-full animate-[spin_12s_linear_infinite]"></div>
                         <!-- Inner Circle (smaller) -->
                         <div class="absolute inset-10 border border-white/40 rounded-full animate-[spin_18s_linear_infinite_reverse]"></div>
-                        
+
                         <!-- Center Icon (Smaller, White) -->
                         <div class="absolute inset-0 flex items-center justify-center">
                             <i class="fas fa-balance-scale text-3xl text-white"></i>
                         </div>
-                        
+
                         <!-- Judiciary Icon Rotation (Gavel, White) -->
                         <div class="absolute inset-0 flex items-center justify-center" style="animation: rotateJudiciary 15s linear infinite;">
                             <i class="fas fa-gavel text-xl text-white absolute" style="top: 0; transform: translateY(-30px);"></i>
                         </div>
-                        
+
                         <!-- Media Icon Rotation (Camera, White) -->
                         <div class="absolute inset-0 flex items-center justify-center" style="animation: rotateMedia 15s linear infinite;">
                             <i class="fas fa-camera-retro text-xl text-white absolute" style="top: 0; transform: translateY(-30px);"></i>
                         </div>
-                        
+
                         <!-- Original 4 dots (simplified/smaller) - revolving -->
                         <div class="absolute inset-0 animate-[spin_20s_linear_infinite]">
                             <div class="absolute top-0 left-1/2 w-1.5 h-1.5 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 shadow-[0_0_5px_rgba(255,255,255,0.8)]"></div>
@@ -360,7 +362,6 @@
             </div>
 
             <div class="grid grid-cols-1 gap-16 items-start">
-                
                 <!-- Vertical Bar Graphs Section (All set to 95% for 'good knowledge') -->
                 <div class="flex flex-wrap justify-center gap-x-8 gap-y-12">
                     <!-- Legal Research (95%) -->
@@ -368,7 +369,7 @@
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
                             <!-- Bar Fill Percentage (White) -->
-                            <div class="v-bar-fill" style="height: 95%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 95%;">
                                 <span class="v-bar-percentage medium-text text-white">95%</span>
                             </div>
                         </div>
@@ -379,7 +380,7 @@
                     <div class="v-bar-group text-center">
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
-                            <div class="v-bar-fill" style="height: 95%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 95%;">
                                 <span class="v-bar-percentage medium-text text-white">95%</span>
                             </div>
                         </div>
@@ -389,7 +390,7 @@
                     <div class="v-bar-group text-center">
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
-                            <div class="v-bar-fill" style="height: 90%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 90%;">
                                 <span class="v-bar-percentage medium-text text-white">90%</span>
                             </div>
                         </div>
@@ -399,7 +400,7 @@
                     <div class="v-bar-group text-center">
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
-                            <div class="v-bar-fill" style="height: 95%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 95%;">
                                 <span class="v-bar-percentage medium-text text-white">95%</span>
                             </div>
                         </div>
@@ -409,7 +410,7 @@
                     <div class="v-bar-group text-center">
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
-                            <div class="v-bar-fill" style="height: 100%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 100%;">
                                 <span class="v-bar-percentage medium-text text-white">100%</span>
                             </div>
                         </div>
@@ -419,7 +420,7 @@
                     <div class="v-bar-group text-center">
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
-                            <div class="v-bar-fill" style="height: 85%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 85%;">
                                 <span class="v-bar-percentage medium-text text-white">85%</span>
                             </div>
                         </div>
@@ -429,7 +430,7 @@
                     <div class="v-bar-group text-center">
                         <div class="v-bar-container mx-auto">
                             <div class="v-bar-base"></div>
-                            <div class="v-bar-fill" style="height: 90%;">
+                            <div class="v-bar-fill start-v-bar-animation" style="height: 90%;">
                                 <span class="v-bar-percentage medium-text text-white">90%</span>
                             </div>
                         </div>
@@ -452,7 +453,7 @@
     <section id="experience" class="py-24 bg-black relative border-t border-white/10">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl mb-16 text-center semi-bold-text">Education & Experience</h2>
-            
+
             <div class="space-y-16">
                 <!-- 1. The Animated Horizontal Bar/Graph -->
                 <div class="text-center mb-16">
@@ -460,7 +461,7 @@
                     <h3 class="text-lg uppercase tracking-widest text-white mb-6 thin-text">Professional Experience Length (2012 - 2025)</h3>
                     <div class="experience-bar-track">
                         <div id="experience-bar-fill" class="experience-bar-fill"></div>
-                        
+
                         <!-- Milestone Markers (White) -->
                         <div class="milestone-marker" style="left: 0%;" data-index="0"></div>
                         <div class="milestone-marker" style="left: 25%;" data-index="1"></div>
@@ -476,7 +477,7 @@
 
                 <!-- 2. Detailed Blocks (Animated Fade-In + Animated Bar Title) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-                    
+
                     <!-- Item 1: Legal Internship -->
                     <div class="animated-detail-card" data-index="5">
                         <div class="card-title-container">
@@ -519,7 +520,7 @@
                             <li>Applied compliance, client relationship, and drafting skills.</li>
                         </ul>
                     </div>
-                    
+
                     <!-- Item 4: V.E. Education -->
                     <div class="animated-detail-card" data-index="8">
                         <div class="card-title-container">
@@ -532,7 +533,6 @@
                         <p class="text-white/70 font-light text-sm mb-2">Developed core Adobe Creative Suite expertise.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -546,7 +546,7 @@
             <p class="text-white/70 mb-10 max-w-xl mx-auto font-light">
                 Available immediately upon relocation to Preston, UK in December. Open to entry-level paralegal and legal assistant roles.
             </p>
-            
+
             <!-- Contact Buttons (White Accent) -->
             <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
                 <a href="mailto:billarajkumar6@gmail.com" class="border border-white/70 px-6 py-3 transition duration-300 flex items-center justify-center gap-2 text-white contact-btn hover:bg-white hover:text-black">
@@ -577,8 +577,8 @@
         let width, height;
         let particles = [];
 
-        const particleCount = 30; 
-        const connectionDistance = 150; 
+        const particleCount = 30;
+        const connectionDistance = 150;
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -591,8 +591,8 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 1; 
-                this.vy = (Math.random() - 0.5) * 1; 
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = (Math.random() - 0.5) * 1;
                 this.size = Math.random() * 2 + 1;
             }
 
@@ -618,7 +618,7 @@
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            
+
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -642,30 +642,25 @@
             }
             requestAnimationFrame(animate);
         }
-        window.onload = function() {
-            animate();
-            checkAnimations(); // Check animations on load
-        }
-
 
         // --- 2. Chart.js Radar Chart Configuration ---
         const ctxChart = document.getElementById('skillsChart').getContext('2d');
-        
+
         const skillsChart = new Chart(ctxChart, {
             type: 'radar',
             data: {
                 labels: [
-                    'Legal Research & Drafting', 
-                    'Client Communication.', 
-                    'Project Deadlines', 
-                    'Adobe Creative Suite', 
+                    'Legal Research & Drafting',
+                    'Client Communication.',
+                    'Project Deadlines',
+                    'Adobe Creative Suite',
                     'Case Analysis',
                     'Digital Tools '
                 ],
                 datasets: [{
                     label: 'Proficiency Level',
                     // All data set to 95%
-                    data: [95, 95, 95, 95, 95, 95], 
+                    data: [95, 95, 95, 95, 95, 95],
                     backgroundColor: 'rgba(255, 255, 255, 0.2)', /* White background fill */
                     borderColor: '#FFFFFF', /* White border line */
                     pointBackgroundColor: '#FFFFFF', /* White points */
@@ -679,72 +674,104 @@
                 scales: {
                     r: {
                         angleLines: {
-                            color: 'rgba(255, 255, 255, 0.2)'
+                            color: 'rgba(255, 255, 255, 0.3)', // White angle lines
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
+                            color: 'rgba(255, 255, 255, 0.2)', // White grid lines
                         },
                         pointLabels: {
-                            color: '#FFF', 
+                            color: '#FFFFFF', // White labels
                             font: {
+                                size: 12,
                                 family: 'Poppins',
-                                size: 12
+                                weight: '500' // medium-text equivalent
                             }
                         },
                         ticks: {
-                            display: false, 
-                            backdropColor: 'transparent',
-                            max: 100, 
-                            min: 0
-                        }
+                            display: false, // Hide numeric ticks
+                            backdropColor: '#000000', // Black background for ticks if displayed
+                            color: '#FFFFFF'
+                        },
+                        min: 0,
+                        max: 100
                     }
                 },
+                // Add plugins for title/legend styling
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        labels: {
+                            color: '#FFFFFF',
+                            font: {
+                                size: 14,
+                                family: 'Poppins',
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        titleColor: '#000000',
+                        bodyColor: '#000000',
+                        borderColor: '#FFFFFF',
+                        borderWidth: 1,
+                        displayColors: false,
                     }
-                },
-                responsive: true,
-                maintainAspectRatio: false
+                }
             }
         });
 
-        // --- 3. Timeline/Detail Block Scroll Animation Script ---
-
-        const detailBlocks = document.querySelectorAll('.animated-detail-card');
+        // --- 3. Scroll Animation Logic ---
+        const expBarTrack = document.querySelector('.experience-bar-track');
+        const expBarFill = document.getElementById('experience-bar-fill');
         const milestoneMarkers = document.querySelectorAll('.milestone-marker');
-        const experienceBar = document.getElementById('experience-bar-fill');
-        let barAnimated = false;
+        const detailBlocks = document.querySelectorAll('.animated-detail-card');
+        const vBarFills = document.querySelectorAll('.v-bar-fill');
 
-        // Simple check to see if an element is in the viewport
-        const isElementInViewport = (el) => {
+        let barAnimated = false; // Flag to ensure bar animation runs only once
+        let vBarsAnimated = false; // Flag to ensure vertical bar animation runs only once
+
+        /**
+         * Checks if an element is visible in the viewport.
+         * @param {Element} el The DOM element to check.
+         * @returns {boolean} True if element is in view, false otherwise.
+         */
+        function isElementInViewport(el) {
+            if (!el) return false;
             const rect = el.getBoundingClientRect();
-            // Trigger when 75% of the element is visible
-            return (rect.top <= (window.innerHeight - rect.height / 4) && rect.bottom >= 0);
-        };
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0 &&
+                rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+                rect.right >= 0
+            );
+        }
 
-        const checkAnimations = () => {
-            // Animate Experience Bar
-            if (!barAnimated && isElementInViewport(experienceBar.parentNode)) {
-                experienceBar.style.animationName = 'fillExperienceBar';
+        function checkAnimations() {
+            // Animate Vertical Skill Bars (run once when the section is visible)
+            if (!vBarsAnimated && document.getElementById('skills')) {
+                if (isElementInViewport(document.getElementById('skills'))) {
+                    vBarFills.forEach(bar => {
+                        bar.classList.add('start-v-bar-animation');
+                    });
+                    vBarsAnimated = true;
+                }
+            }
+
+
+            // Animate Experience Bar and Markers (run once)
+            if (!barAnimated && expBarTrack && isElementInViewport(expBarTrack)) {
+                expBarFill.classList.add('start-fill-animation');
+                milestoneMarkers.forEach((marker, index) => {
+                    // Stagger the marker appearance slightly after the bar starts filling
+                    setTimeout(() => {
+                        marker.classList.add('in-view');
+                    }, 500 + index * 100);
+                });
                 barAnimated = true;
             }
 
-            // Animate Milestone Markers
-            milestoneMarkers.forEach((marker, index) => {
-                if (isElementInViewport(marker)) {
-                    const delay = index * 100;
-                    if (!marker.classList.contains('in-view')) {
-                         setTimeout(() => {
-                             marker.classList.add('in-view');
-                         }, delay);
-                    }
-                }
-            });
-
             // Animate Detail Blocks
-            detailBlocks.forEach((item, index) => {
-                // Use data-index for consistent, staggered delay regardless of DOM order
+            detailBlocks.forEach((item) => {
                 const dataIndex = parseInt(item.getAttribute('data-index'));
                 const delay = (dataIndex - 5) * 100; // Start delay from the 5th element in the general timeline
 
@@ -759,17 +786,18 @@
                              }
                          }, delay);
                     }
-                } else {
-                    // Optional: Remove in-view class when out of view, but usually we keep it for smoother scroll up/down
-                    // item.classList.remove('in-view');
                 }
             });
-        };
+        }
 
         window.addEventListener('scroll', checkAnimations);
         window.addEventListener('resize', checkAnimations);
-        // Initial check in case content is short
-        checkAnimations();
+
+        // Initial calls
+        window.onload = function() {
+            animate(); // Start the spider web animation
+            checkAnimations(); // Check animations on load
+        }
     </script>
 </body>
 </html>
