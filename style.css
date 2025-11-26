@@ -1,0 +1,219 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #000;
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Circle Pulse Animation */
+.circle-pulse {
+    position: relative;
+}
+.circle-pulse::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+
+/* Hero Canvas */
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.thin-text { font-weight: 100; }
+.regular-text { font-weight: 400; }
+.medium-text { font-weight: 500; }
+.semi-bold-text { font-weight: 600; }
+
+.accent-border { border-color: #FFFFFF; }
+.accent-text { color: #FFFFFF; } 
+
+/* Custom animation for rotating icons in Summary section */
+/* Note: These are applied to parent containers in HTML to avoid rotation interference */
+@keyframes rotateMedia {
+    0% { transform: rotate(0deg) translate(80px) rotate(0deg); }
+    100% { transform: rotate(360deg) translate(80px) rotate(-360deg); }
+}
+.media-rotation-container {
+    animation: rotateMedia 15s linear infinite;
+}
+
+@keyframes rotateJudiciary {
+    0% { transform: rotate(180deg) translate(80px) rotate(-180deg); }
+    100% { transform: rotate(540deg) translate(80px) rotate(-540deg); }
+}
+.judiciary-rotation-container {
+    animation: rotateJudiciary 15s linear infinite;
+}
+
+/* Vertical Bar Styles (for Skills) - Simplified */
+.v-bar-container {
+    height: 150px;
+    width: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    margin: 0 10px;
+}
+.v-bar-base {
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    position: absolute;
+    bottom: 0;
+    border-radius: 4px;
+}
+.v-bar-fill {
+    width: 100%;
+    background-color: #FFFFFF; 
+    border-radius: 4px;
+    animation: loadVBar 1.5s ease-out forwards;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+@keyframes loadVBar {
+    from { height: 0; }
+}
+.v-bar-percentage {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Experience Bar Animation Styles (Horizontal Graph) --- */
+@keyframes fillExperienceBar {
+    from { width: 0; }
+}
+
+.experience-bar-track {
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.experience-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a1a 0%, #FFFFFF 100%); 
+    border-radius: 4px;
+    animation: fillExperienceBar 2s ease-out forwards;
+    width: 100%; 
+}
+
+.milestone-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #FFFFFF; 
+    border: 3px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+    transition: all 0.3s;
+    opacity: 0;
+}
+.milestone-marker.in-view {
+     opacity: 1;
+     animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* --- New Unified Detail Card Style --- */
+.animated-detail-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    padding: 1.5rem;
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
+    background-color: #0a0a0a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+.animated-detail-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-title-container {
+    position: relative;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.card-title-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: #FFFFFF; 
+    width: 0;
+    transition: width 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.animated-detail-card.in-view .card-title-bar {
+    width: 100%;
+}
+
+
+/* --- Footer Button Animation Styles --- */
+.contact-btn:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); 
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Custom Alert Modal */
+#custom-alert {
+    z-index: 1000;
+}
